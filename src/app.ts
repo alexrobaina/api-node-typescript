@@ -1,6 +1,7 @@
 import express from 'express';
 // morgan sirve para ver las peticiones a la api cuando esta corriendo el servidor en la consola
 import morgan from 'morgan';
+import serverless from 'serverless-http';
 // sirve para comunicarnos con otros tipos de servidores de desarrollo
 import cors from 'cors';
 import passport from 'passport';
@@ -32,4 +33,4 @@ app.get('/', (req, res) => {
 
 app.use(routes);
 
-export default app;
+export default serverless(app);
