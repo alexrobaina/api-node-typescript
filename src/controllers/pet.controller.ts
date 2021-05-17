@@ -12,19 +12,19 @@ export const create = async (req: Request, res: Response) => {
   try {
     const register = await Pet.create(req.body);
 
-    if (register.category === 'dog') {
-      const registerMedicalHistory: IDogMedicalHistory = await DogMedicalHistory.create(
-        req.body.medicalDog
-      );
-      register.dogMedicalHistory = registerMedicalHistory._id;
-    }
+    // if (register.category === 'dog') {
+    //   const registerMedicalHistory: IDogMedicalHistory = await DogMedicalHistory.create(
+    //     req.body.medicalDog
+    //   );
+    //   register.dogMedicalHistory = registerMedicalHistory._id;
+    // }
 
-    if (register.category === 'cat') {
-      const registerMedicalHistory: ICatMedicalHistory = await CatMedicalHistory.create(
-        req.body.medicalCat
-      );
-      register.catMedicalHistory = registerMedicalHistory._id;
-    }
+    // if (register.category === 'cat') {
+    //   const registerMedicalHistory: ICatMedicalHistory = await CatMedicalHistory.create(
+    //     req.body.medicalCat
+    //   );
+    //   register.catMedicalHistory = registerMedicalHistory._id;
+    // }
 
     const dataUserCreator = await User.findOne({ _id: req.body.userCreator });
 
@@ -423,14 +423,14 @@ export const queryList = async (req: any, res: any) => {
   };
 
   const petsAggregate = [
-    {
-      $lookup: {
-        from: 'users',
-        localField: 'userCreator',
-        foreignField: '_id',
-        as: 'userCreator',
-      },
-    },
+    // {
+    //   $lookup: {
+    //     from: 'users',
+    //     localField: 'userCreator',
+    //     foreignField: '_id',
+    //     as: 'userCreator',
+    //   },
+    // },
     { $unwind: '$userCreator' },
     {
       $lookup: {
